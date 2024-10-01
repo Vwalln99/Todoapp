@@ -1,4 +1,6 @@
 package com.vwalln.todoapp
+import com.vwalln.todoapp.TodoList
+import com.vwalln.todoapp.Item
 
 import android.icu.text.Transliterator.Position
 import android.view.LayoutInflater

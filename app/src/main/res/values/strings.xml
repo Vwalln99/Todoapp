@@ -7,4 +7,6 @@
     <string name="delete">Element löschen</string>
     <string name="delete_done_item">Erledigte Items löschen</string>
     <string name="add_item">Element hinzufügen</string>
+    <string name="add_item_hint">Name des Items</string>
+    <string name="add_item_err_input">Fügen Sie dem Element einen Namen hinzu</string>
 </resources>
