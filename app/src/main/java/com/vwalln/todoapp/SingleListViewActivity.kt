@@ -112,5 +112,4 @@ class SingleListViewActivity : AppCompatActivity() {
         builder.show()
     }
 
-
 }
