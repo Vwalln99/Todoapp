@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         //Beispieldaten
-        val exampleList = TodoList("Einkaufsliste",
+       /* val exampleList = TodoList("Einkaufsliste",
             mutableListOf(
                 Item("Bananen", false),
                 Item("Mehl", true),
@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
                 Item("Rindenmulch", false)
             ))
         todoListAdapter.addTodoList(exampleList)
-        todoListAdapter.addTodoList(exampleList2)
+        todoListAdapter.addTodoList(exampleList2)*/
 
         binding.addListButton.setOnClickListener{
             addNewList();

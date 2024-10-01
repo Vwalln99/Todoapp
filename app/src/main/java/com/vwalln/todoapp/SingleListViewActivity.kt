@@ -44,6 +44,7 @@ class SingleListViewActivity : AppCompatActivity() {
         }
         binding.deleteCompletedItemsButton.setOnClickListener {
             //TODO dialogfenster ob man wirklich alles löschen möchte
+            removeOldItem()
         }
     }
 
@@ -82,20 +83,34 @@ class SingleListViewActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    /*fun removeOldItem(){
-        val builder = AlertDialog.Builder()
-        builder.setTitle("Item löschen")
-        builder.setMessage("Möchten Sie das Item wirklich löschen?")
-        builder.setPositiveButton("Löschen"){_, _ ->
-            val itemName = items[position].title
-            ItemAdapter.removeItem(position)
-            Toast.makeText(
-                binding.root.context,
-                "$itemName gelöscht",
-                Toast.LENGTH_SHORT
-            ).show()
+    fun removeOldItem() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Items löschen")
+        builder.setMessage("Möchten Sie alle erledigten Items wirklich löschen?")
+        builder.setPositiveButton("Löschen") { _, _ ->
+            val positionsToRemove = todoList.items.mapIndexedNotNull { index, item ->
+                if (item.isDone) index else null
+            }
+            positionsToRemove.reversed().forEach { position ->
+                itemAdapter.removeItem(position)
+            }
+            if (positionsToRemove.isNotEmpty()) {
+                Toast.makeText(
+                    this,
+                    "${positionsToRemove.size} erledigten Items gelöscht.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                Toast.makeText(
+                    this,
+                    "Keine erledigten Items gefunden.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
         builder.setNegativeButton("Abbrechen", null)
         builder.show()
-    }*/
+    }
+
+
 }
