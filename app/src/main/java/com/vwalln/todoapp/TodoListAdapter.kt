@@ -8,14 +8,14 @@ import com.vwalln.todoapp.databinding.TodoListCardItemBinding
 
 class TodoListAdapter (
     private val todoLists: MutableList<TodoList>,
-    private val onItemClicked: (TodoList) -> Unit
+    private val onItemClicked: (TodoList) -> Unit,
+    private val onItemLongClicked: (TodoList, Int) -> Unit
     ) : RecyclerView.Adapter<TodoListAdapter.TodoListViewHolder>() {
     //Viewholder hält die referenzen zu den views der listenelemente
     inner class TodoListViewHolder(val binding: TodoListCardItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(todoList: TodoList) {
             //setzt den titel und die anzahl der items
-            println("Here")
             binding.todoListTitle.text = todoList.title
             binding.todoListItemCount.text = binding.root.context.resources.getQuantityString(
                 R.plurals.todo_list_item_count,
@@ -26,6 +26,13 @@ class TodoListAdapter (
             //clickevent wenn ein todolist-item angeklickt wird
             binding.root.setOnClickListener {
                 onItemClicked(todoList)
+            }
+            binding.root.setOnLongClickListener{
+                val position = bindingAdapterPosition
+                if(position != RecyclerView.NO_POSITION){
+                    onItemLongClicked(todoList, position)
+                }
+                true
             }
         }
     }
@@ -50,6 +57,12 @@ class TodoListAdapter (
     fun addTodoList(todoList: TodoList) {
         todoLists.add(todoList)
         notifyItemInserted(todoLists.size - 1)
+    }
+
+    //löscht liste mit langem klick drauf
+    fun removeTodoList(position: Int){
+        todoLists.removeAt(position)
+        notifyItemRemoved(position)
     }
 }
 

@@ -3,4 +3,8 @@
     <string name="add_list">Neue Liste hinzufügen</string>
     <string name="add_list_hint">Name der Liste</string>
     <string name="add_list_err_input">Fügen Sie der Liste einen Namen hinzu</string>
+    <string name="back_to_main">Zurück zur Übersicht</string>
+    <string name="delete">Element löschen</string>
+    <string name="delete_done_item">Erledigte Items löschen</string>
+    <string name="add_item">Element hinzufügen</string>
 </resources>
